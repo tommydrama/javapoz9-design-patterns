@@ -1,9 +1,11 @@
 package com.sda;
 
 import com.sda.model.Document;
+import com.sda.model.DocumentLombok;
 
 import java.time.Instant;
 import java.util.Arrays;
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
@@ -35,7 +37,29 @@ public class Application {
                 author("Tomasz Darowski").
                 build();
 
+        Document.builder(documentByBuilder).author("Janusz Cebula").build();
 
-        System.out.println("Hello World");
-    }
-}
+        DocumentLombok build = DocumentLombok.builder().
+                author("Pioter").
+                description("ejojojo").
+                build();
+
+        List<String> items = Arrays.asList("Ala", "ma", "kota");
+        String result = "";
+        for (String item : items) {
+            result += item + ' ';}
+
+            //tak robić
+            StringBuilder stringBuilder = new StringBuilder();
+
+
+            for (String item : items) {
+                stringBuilder.append(item).append(" ");}
+
+                String message = stringBuilder.toString();
+                System.out.println(message);
+            }
+        }
+
+
+

@@ -1,6 +1,7 @@
 package com.sda.model;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Document {
@@ -14,6 +15,11 @@ public class Document {
     public static DocumentBuilder builder(){
         return new DocumentBuilder();
     }
+
+    public static DocumentBuilder builder(Document document) {
+        return new DocumentBuilder(document);
+    }
+
 
     public Document() {
     }
@@ -67,11 +73,21 @@ public class Document {
     }
 
     public static class DocumentBuilder{
-        private String title;
-        private String description;
-        private String author;
-        private Instant creationDate;
-        private List<String> items;
+        private String title = "Default title";
+        private String description = "Default decription";
+        private String author = null;
+        private Instant creationDate = Instant.now();
+        private List<String> items = new ArrayList <>();
+
+        public DocumentBuilder(){}
+
+        public DocumentBuilder(Document document){
+            this.title = document.title;
+            this.description = document.description;
+            this.author = document.author;
+            this.creationDate = document.creationDate;
+            this.items = document.items;
+        }
 
         public DocumentBuilder title(String title) {
             this.title = title;
@@ -100,5 +116,8 @@ public class Document {
         public Document build(){
             return new Document(title, description, author, creationDate, items);
         }
+
+
+
     }
 }
